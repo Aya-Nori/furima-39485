@@ -34,32 +34,39 @@ Things you may want to cover:
 | nickname           | string | null: false               |
 | email              | string | null: false, unique: true |
 | encrypted_password | string | null: false               |
-| name_kanji         | string | null: false               |
-| name_kana          | string | null: false               |
-| birth              | text   | null: false               |
-| favorite           | text   | null: false               |
+| name_sei           | string | null: false               |
+| name_mei           | string | null: false               |
+| name_sei_kana      | string | null: false               |
+| name_mei_kana      | string | null: false               |
+| birth              | date   | null: false               |
 
 ### Association
 
 - has_many :comments
 - has_many :items
-- has_one :purchases
+- has_many :purchases
 
 
 
 ## items テーブル
 
-| Column       | Type   | Options                   |
-| ------------ | ------ | ------------------------- |
-| name         | string | null: false               |
-| description  | text   | null: false               |
-| category     | string | null: false               |
-| status       | string | null: false               |
+| Column       | Type    | Options                   |
+| ------------ | ------- | ------------------------- |
+| name         | string  | null: false               |
+| description  | text    | null: false               |
+| category_id  | integer | null: false               |
+| status_id    | integer | null: false               |
+| condition_id | integer | null: false               |
+| charge_id    | integer | null: false               |
+| region_id    | integer | null: false               |
+| estimate_id  | integer | null: false               |
+| price        | text    | null: false               |
 
 ### Association
 
-- belongs_to :users
+- belongs_to :user
 - has_many :comments
+- has_one :purchases
 
 
 
@@ -73,8 +80,8 @@ Things you may want to cover:
 
 ### Association
 
-- belongs_to :users
-- belongs_to :items
+- belongs_to :user
+- belongs_to :item
 
 
 
@@ -82,14 +89,14 @@ Things you may want to cover:
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
-| user_id       | references | null: false, foreign_key: true |
-| item_id       | references | null: false, foreign_key: true |
-| shipment_id   | references | null: false, foreign_key: true |
+| user          | references | null: false, foreign_key: true |
+| item          | references | null: false, foreign_key: true |
 
 ### Association
 
 - has_one :shipments
-- belongs_to :users
+- belongs_to :user
+- belongs_to :item
 
 
 
@@ -97,10 +104,14 @@ Things you may want to cover:
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
-| user_id       | references | null: false, foreign_key: true |
-| item_id       | references | null: false, foreign_key: true |
-| purchase_id   | references | null: false, foreign_key: true |
+| purchase      | references | null: false, foreign_key: true |
+| postcode      | string     | null: false                    |
+| prefecture_id | integer    | null: false                    |
+| city          | text       | null: false                    |
+| area_number   | integer    | null: false                    |
+| building      | integer    | null: false                    |
+| tell          | integer    | null: false                    |
 
 ### Association
 
-- belongs_to :purchases
+- belongs_to :purchase
