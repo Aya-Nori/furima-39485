@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-
 RSpec.describe User, type: :model do
   before do
     @user = FactoryBot.build(:user)
@@ -53,7 +52,5 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("Birth can't be blank")
     end
-
   end
 end
-
