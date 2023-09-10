@@ -8,7 +8,7 @@ class User < ApplicationRecord
   validates :birth, presence: true
 
   with_options presence: true, length: { minimum: 6 }, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i, message: '英字と数字の両方を含めて設定してください' } do
-    validates :password, presence: true
+    validates :password, presence: true, confirmation: true 
   end
   with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: '全角文字を使用してください' } do
     validates :name_sei, presence: true
