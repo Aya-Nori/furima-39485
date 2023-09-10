@@ -6,8 +6,10 @@ class User < ApplicationRecord
 
   validates :nickname, presence: true
   validates :birth, presence: true
-  validates :email, presence: true, uniqueness: { case_sensitive: false }
 
+  with_options presence: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i } do
+  validates :email, presence: true, uniqueness: { case_sensitive: false }
+  end
   with_options presence: true, length: { minimum: 6 }, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i, message: '英字と数字の両方を含めて設定してください' } do
     validates :password, presence: true, confirmation: true 
   end
