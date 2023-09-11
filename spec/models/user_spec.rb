@@ -58,47 +58,63 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
-      it 'お名前(全角)は、名字と名前がそれぞれ必須であること。' do
+      it 'お名前(全角)は、名字が必須であること。' do
         @user.name_sei = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Name sei can't be blank")
+      end
+      it 'お名前(全角)は、名前が必須であること。' do
         @user.name_mei = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Name mei can't be blank")
       end
-      it 'お名前(全角)は、全角（漢字・ひらがな・カタカナ）での入力が必須であること。半角英数では入力できない。' do
+      it 'お名前(全角)、名字は、全角（漢字・ひらがな・カタカナ）での入力が必須であること。半角英数では入力できない。' do
         @user.name_sei = 'ab12'
         @user.valid?
         expect(@user.errors.full_messages).to include('Name sei 全角文字を使用してください')
+      end
+      it 'お名前(全角)、名前は、全角（漢字・ひらがな・カタカナ）での入力が必須であること。半角英数では入力できない。' do
         @user.name_mei = 'ab12'
         @user.valid?
         expect(@user.errors.full_messages).to include('Name mei 全角文字を使用してください')
       end
-      it 'お名前カナ(全角)は、名字と名前がそれぞれ必須であること。' do
+      it 'お名前カナ(全角)は、名字が必須であること。' do
         @user.name_sei_kana = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Name sei kana can't be blank")
+      end
+      it 'お名前カナ(全角)は、名前が必須であること。' do
         @user.name_mei_kana = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Name mei kana can't be blank")
       end
-      it 'お名前カナ(全角)は、全角（カタカナ）での入力が必須であること。半角英数、漢字、かなでは入力できない' do
+      it 'お名前カナ(全角)、名字は、全角（カタカナ）での入力が必須であること。半角英数では入力できない' do
         @user.name_sei_kana = 'ab12'
         @user.valid?
         expect(@user.errors.full_messages).to include('Name sei kana 全角カナを使用してください')
+      end
+      it 'お名前カナ(全角)、名字は、全角（カタカナ）での入力が必須であること。漢字では入力できない' do
         @user.name_sei_kana = '壱弐参'
         @user.valid?
         expect(@user.errors.full_messages).to include('Name sei kana 全角カナを使用してください')
+      end
+      it 'お名前カナ(全角)、名字は、全角（カタカナ）での入力が必須であること。かなでは入力できない' do
         @user.name_sei_kana = 'あいうえお'
         @user.valid?
         expect(@user.errors.full_messages).to include('Name sei kana 全角カナを使用してください')
+      end
+      it 'お名前カナ(全角)、名前は、全角（カタカナ）での入力が必須であること。半角英数では入力できない' do
         @user.name_mei_kana = 'ab12'
         @user.valid?
         expect(@user.errors.full_messages).to include('Name mei kana 全角カナを使用してください')
-        @user.name_sei_kana = '壱弐参'
+      end
+      it 'お名前カナ(全角)、名前は、全角（カタカナ）での入力が必須であること。漢字では入力できない' do
+        @user.name_mei_kana = '壱弐参'
         @user.valid?
         expect(@user.errors.full_messages).to include('Name mei kana 全角カナを使用してください')
-        @user.name_sei_kana = 'あいうえお'
+      end
+      it 'お名前カナ(全角)、名前は、全角（カタカナ）での入力が必須であること。かなでは入力できない' do
+        @user.name_mei_kana = 'あいうえお'
         @user.valid?
         expect(@user.errors.full_messages).to include('Name mei kana 全角カナを使用してください')
       end
