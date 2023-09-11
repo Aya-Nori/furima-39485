@@ -58,6 +58,29 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
+      
+      it 'お名前(全角)は、名字と名前がそれぞれ必須であること。' do
+        @user.name_sei = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Name sei can't be blank")
+        @user.name_mei = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Name mei can't be blank")
+      end
+      # it 'お名前(全角)は、全角（漢字・ひらがな・カタカナ）での入力が必須であること。' do
+      #   @user.name_sei_kana = 'abc'
+      #   @user.valid?
+      #   expect(@user.errors.full_messages).to include("Name sei kana can't be blank")
+      # end
+
+      it 'お名前カナ(全角)は、名字と名前がそれぞれ必須であること。' do
+      end
+
+      it 'お名前カナ(全角)は、全角（カタカナ）での入力が必須であること。' do
+
+      end
+
+
       it '生年月日が必須であること。生年月日が空では登録できない' do
         @user.birth = ''
         @user.valid?
