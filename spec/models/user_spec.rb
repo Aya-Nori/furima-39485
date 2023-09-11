@@ -20,7 +20,6 @@ RSpec.describe User, type: :model do
       end
       it 'メールアドレスが必須であること。emailが空では登録できない' do
         @user.email = ''
-        binding.pry
         @user.valid?
         expect(@user.errors.full_messages).to include("Email can't be blank")
       end
