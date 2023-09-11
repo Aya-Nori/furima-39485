@@ -67,11 +67,14 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Name mei can't be blank")
       end
-      # it 'お名前(全角)は、全角（漢字・ひらがな・カタカナ）での入力が必須であること。' do
-      #   @user.name_sei_kana = 'abc'
-      #   @user.valid?
-      #   expect(@user.errors.full_messages).to include("Name sei kana can't be blank")
-      # end
+      it 'お名前(全角)は、全角（漢字・ひらがな・カタカナ）での入力が必須であること。半角英数では入力できない。' do
+        @user.name_sei = 'ab12'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Name sei 全角文字を使用してください")
+        @user.name_mei = 'ab12'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Name mei 全角文字を使用してください")
+      end
 
       it 'お名前カナ(全角)は、名字と名前がそれぞれ必須であること。' do
       end
