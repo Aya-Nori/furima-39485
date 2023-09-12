@@ -12,8 +12,7 @@ class Item < ApplicationRecord
   belongs_to :estimate
 
   # 商品出品時に商品名、商品の説明がない場合は、保存できない。
-  validates :name, :text, presence: true
-  validates :description, :text, presence: true
+  validates :name, :description, :price, presence: true
 
   # アクティブハッシュの選択肢は必ず選ぶこと。
   validates :category_id, numericality: { other_than: 1 , message: "can't be blank"} 
