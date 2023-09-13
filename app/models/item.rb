@@ -4,7 +4,6 @@ class Item < ApplicationRecord
   has_one :purchase
   has_one_attached :image
 
-  validates :image, presence: true
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
@@ -13,8 +12,9 @@ class Item < ApplicationRecord
   belongs_to :region
   belongs_to :estimate
 
-  # 商品出品時に商品名、商品の説明がない場合は、保存できない。
+  # 商品出品時に商品名、商品の説明、画像、価格がない場合は、保存できない。
   validates :name, :description, :price, presence: true
+  validates :price, numericality: { in: 300..9999999 }, format: { with: /\A[0-9]+\z/i }
 
   # アクティブハッシュの選択肢は必ず選ぶこと。
   validates :category_id, numericality: { other_than: 1 , message: "can't be blank"} 
