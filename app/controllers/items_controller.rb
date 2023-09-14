@@ -11,15 +11,16 @@ class ItemsController < ApplicationController
   def create
     @item = Item.create(item_params)
     if @item.save
-      redirect_to root_path
+      redirect_to root_path, notice: '出品されました。'
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
   private
-  def item_params
-    params.require(:item).permit(:name, :image, :description, :price, :category_id, :condition_id, :charge_id, :region_id, :estimate_id).merge(user_id: current_user.id)
-  end
 
+  def item_params
+    params.require(:item).permit(:name, :image, :description, :price, :category_id, :condition_id, :charge_id, :region_id,
+                                 :estimate_id).merge(user_id: current_user.id)
+  end
 end
