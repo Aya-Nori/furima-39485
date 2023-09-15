@@ -17,6 +17,9 @@ RSpec.describe Item, type: :model do
       it '画像が選択されていないときは商品登録できない' do
       end
       it '商品名がないときは商品登録できない' do
+        @item.name = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Name can't be blank")
       end
       it '商品の説明がないときは商品登録できない' do
         @item.description = ''
