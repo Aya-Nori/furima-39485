@@ -19,6 +19,9 @@ RSpec.describe Item, type: :model do
       it '商品名がないときは商品登録できない' do
       end
       it '商品の説明がないときは商品登録できない' do
+        @item.description = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Description can't be blank")
       end
       it 'カテゴリーが選択されていないときは商品登録できない' do
         @item.category_id = 1
