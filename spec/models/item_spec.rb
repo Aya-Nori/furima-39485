@@ -31,6 +31,9 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Condition can't be blank")
       end
       it '配送料の負担が選択されていないときは商品登録できない' do
+        @item.charge_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Charge can't be blank")
       end
       it '配送元の地域が選択されていないときは商品登録できない' do
       end
