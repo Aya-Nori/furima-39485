@@ -46,6 +46,9 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Estimate can't be blank")
       end
       it '価格が入力されていないときは商品登録できない' do
+        @item.price = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price can't be blank")
       end
       it '価格に半角数が入力されていないときは商品登録できない' do
       end
