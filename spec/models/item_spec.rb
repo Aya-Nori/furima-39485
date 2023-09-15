@@ -36,6 +36,9 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Charge can't be blank")
       end
       it '配送元の地域が選択されていないときは商品登録できない' do
+        @item.region_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Region can't be blank")
       end
       it '配送までの日数が選択されていないときは商品登録できない' do
       end
