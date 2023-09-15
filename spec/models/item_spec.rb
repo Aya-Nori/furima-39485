@@ -3,10 +3,9 @@ require 'rails_helper'
 RSpec.describe Item, type: :model do
   before do
     @item = FactoryBot.build(:item)
-    end
+  end
 
   describe 'ユーザー新規登録' do
-
     context '商品登録できる時' do
       it '必要な項目が入力、選択されていれば新規登録できる' do
         expect(@item).to be_valid
@@ -17,19 +16,27 @@ RSpec.describe Item, type: :model do
       it 'ユーザーが紐づいていないと商品登録できない' do
         @item.user = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("User must exist")
-      end
-      it '画像が選択されていないときは商品登録できない' do
+        expect(@item.errors.full_messages).to include('User must exist')
       end
       it '商品名がないときは商品登録できない' do
         @item.name = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Name can't be blank")
       end
+      it '商品名が41文字以上のときは商品登録できない' do
+        @item.name = Faker::Lorem.characters(number: 41)
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Name is too long (maximum is 40 characters)')
+      end
       it '商品の説明がないときは商品登録できない' do
         @item.description = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Description can't be blank")
+      end
+      it '商品の説明が1001文字以上のときは商品登録できない' do
+        @item.description = Faker::Lorem.characters(number: 1001)
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Description is too long (maximum is 1000 characters)')
       end
       it 'カテゴリーが選択されていないときは商品登録できない' do
         @item.category_id = 1
@@ -64,9 +71,8 @@ RSpec.describe Item, type: :model do
       it '価格に半角数が入力されていないときは商品登録できない。全角数字では登録できない。' do
         @item.price = '１０００'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
     end
-
   end
 end

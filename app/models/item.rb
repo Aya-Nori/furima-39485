@@ -14,6 +14,8 @@ class Item < ApplicationRecord
   # 商品出品時に商品名、商品の説明、画像、価格がない場合は、保存できない。
   validates :name, :description, :price, presence: true
   validates :price, numericality: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/i }
+  validates :name, length: { maximum: 40 }
+  validates :description, length: { maximum: 1000 }
 
   # アクティブハッシュの選択肢は必ず選ぶこと。
   validates :category_id, numericality: { other_than: 1, message: "can't be blank" }
