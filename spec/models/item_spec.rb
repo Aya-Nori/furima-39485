@@ -23,6 +23,11 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Name can't be blank")
       end
+      it '商品画像がないときは商品登録できない' do
+        @item.image = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Image can't be blank")
+      end
       it '商品名が41文字以上のときは商品登録できない' do
         @item.name = Faker::Lorem.characters(number: 41)
         @item.valid?

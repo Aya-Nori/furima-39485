@@ -12,7 +12,7 @@ class Item < ApplicationRecord
   belongs_to :estimate
 
   # 商品出品時に商品名、商品の説明、画像、価格がない場合は、保存できない。
-  validates :name, :description, :price, presence: true
+  validates :name, :description, :image, :price, presence: true
   validates :price, numericality: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/i }
   validates :name, length: { maximum: 40 }
   validates :description, length: { maximum: 1000 }
