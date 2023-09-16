@@ -13,7 +13,7 @@ class Item < ApplicationRecord
 
   # 商品出品時に商品名、商品の説明、画像、価格がない場合は、保存できない。
   validates :name, :description, :image, :price, presence: true
-  validates :price, numericality: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/i }
+  validates :price, numericality: { only_integer: true, in: 300..9_999_999 }
   validates :name, length: { maximum: 40 }
   validates :description, length: { maximum: 1000 }
 
