@@ -128,7 +128,7 @@
     </div>
     <ul class='item-lists'>
 
-    <% unless @item %>
+    <% if @items.any? %>
         <li class='list'>
 
           <% @items.each do |item| %>
