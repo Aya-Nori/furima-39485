@@ -135,10 +135,11 @@
             <%= link_to "#" do %>
               <div class='item-img-content'>
                 <% if item.image.attached? %>
-                  <%= image_tag item.image.variant(resize: '300x300'), class: "item-img" %>
+                  <%= image_tag item.image, class: "item-img" %>
                 <% end %>
 
                 <%# 商品が売れていればsold outを表示しましょう %>
+                <%# 商品一覧表示機能実装時は全ての画像にsold outを表示させる %>
                 <div class='sold-out'>
                   <span>Sold Out!!</span>
                 </div>
