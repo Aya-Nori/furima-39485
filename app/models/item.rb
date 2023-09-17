@@ -19,7 +19,7 @@ class Item < ApplicationRecord
   validates :name, presence: true, unless: :was_attached?
 
   def was_attached?
-    self.image.attached?
+    image.attached?
   end
 
   # アクティブハッシュの選択肢は必ず選ぶこと。
