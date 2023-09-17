@@ -3,7 +3,6 @@ function commission (){
 
   articleText.addEventListener("keyup", () => {
 
-    console.log(articleText.value);
     const priceVal  = articleText.value;
     const commissionVal = document.getElementById("add-tax-price");
     const calculatedValue = Math.floor(priceVal * 0.1);
