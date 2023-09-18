@@ -129,9 +129,9 @@
     <ul class='item-lists'>
 
     <% if @items.any? %>
-        <li class='list'>
 
-          <% @items.each do |item| %>
+        <% @items.each do |item| %>
+          <li class='list'>
             <%= link_to "#" do %>
               <div class='item-img-content'>
                 <% if item.image.attached? %>
@@ -159,9 +159,9 @@
                 </div>
               </div>
             <% end %>
-          <% end %>
+          </li>
+        <% end %>
 
-        </li>
     <% else %>
 
       <li class='list'>
