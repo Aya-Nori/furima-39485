@@ -17,4 +17,9 @@ class User < ApplicationRecord
     validates :name_sei_kana, presence: true
     validates :name_mei_kana, presence: true
   end
+
+  def name
+    "#{name_sei} #{name_mei}" # ユーザーの姓と名を結合して名前を返す例
+  end
+  
 end
