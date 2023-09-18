@@ -9,6 +9,12 @@ class ItemsController < ApplicationController
     @item = Item.new
   end
 
+  def edit
+  end
+
+  def destroy
+  end
+
   def show
     @item = Item.find(params[:id])
   end
