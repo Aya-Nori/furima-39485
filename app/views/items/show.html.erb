@@ -1,6 +1,5 @@
 <%= render "shared/header" %>
 
-<%# if '◆◆◆商品は販売中である。◆◆◆' %>
 
   <%# 商品の概要 %>
   <div class="item-show">
@@ -27,34 +26,19 @@
     </div>
   </div>
 
-<%# else '◆◆◆商品は売り切れである◆◆◆'%>
-  <%# ▽▽▽ 商品がない場合に示すサンプル画像、内容 ▽▽▽ %>
 
-  <div class="item-box">
-    <h2 class="name">
-      <%= "商品名" %>
-    </h2>
-    <div class="item-img-content">
-      <%= image_tag "item-sample.png" ,class:"item-box-img" %>
+  <%# if '◆◆◆商品は購入済みである◆◆◆'%>
+
+    <%# <div class="item-img-content"> %>
+      <%# <%= image_tag "item-sample.png" ,class:"item-box-img" %> %>
       <%# 商品が売れている場合は、sold outを表示しましょう %>
-      <div class="sold-out">
-        <span>Sold Out!!</span>
-      </div>
+      <%# <div class="sold-out"> %>
+        <%# <span>Sold Out!!</span> %>
+      <%# </div> %>
       <%# //商品が売れている場合は、sold outを表示しましょう %>
-    </div>
-    <div class="item-price-box">
-      <span class="item-price">
-        ¥ 999,999,999
-      </span>
-      <span class="item-postage">
-        <%= "配送料負担" %>
-      </span>
-    </div>
-  </div>
+    <%# </div> %>
 
-  <%# △△△ 商品がない場合に示すサンプル画像、内容 △△△ %>
-<%# end '◆◆◆商品が売り切れかどうかが判断された。◆◆◆'%>
-
+  <%# end '◆◆◆商品が購入済みかどうかが判断された。◆◆◆'%>
 
 
 <%# if 'ログインしている' %>
@@ -66,6 +50,7 @@
 <%# else ''%>
     <%# ボタンを表示しない %>
 <%# end ''%>
+
 
     <%# ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
 
