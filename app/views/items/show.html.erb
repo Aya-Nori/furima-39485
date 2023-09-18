@@ -47,12 +47,6 @@
 
     <%# //ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
 
-      <%= link_to item_path(@item.id) do %>
-              <% if @item.image.attached? %>
-                <%= image_tag @item.image, class: "item-img" %>
-              <% end %>
-      <% end %>
-
     <div class="item-explain-box">
       <span><%= "商品説明" %></span>
     </div>
