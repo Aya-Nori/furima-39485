@@ -17,10 +17,9 @@ class ItemsController < ApplicationController
   end
 
   def update
-    item = Item.find(params[:id])
-    item.update(item_params)
-    if item.save
-      redirect_to item_path, notice: '修正されました。'
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to item_path(@item), notice: '修正されました。'
     else
       render :edit, status: :unprocessable_entity
     end
