@@ -6,8 +6,19 @@
     <h2 class="name">
       <%= "商品名" %>
     </h2>
+
+      <%= link_to item_path(@item.id) do %>
+              <% if @item.image.attached? %>
+                <%= image_tag @item.image, class: "item-img" %>
+              <% end %>
+      <% end %>
+
+
     <div class="item-img-content">
-      <%= image_tag "item-sample.png" ,class:"item-box-img" %>
+
+      <%# 商品がない場合に示すサンプル画像 %>
+      <%#= image_tag "item-sample.png" ,class:"item-box-img" %>
+
       <%# 商品が売れている場合は、sold outを表示しましょう %>
       <div class="sold-out">
         <span>Sold Out!!</span>
@@ -36,6 +47,12 @@
 
     <%# //ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
 
+      <%= link_to item_path(@item.id) do %>
+              <% if @item.image.attached? %>
+                <%= image_tag @item.image, class: "item-img" %>
+              <% end %>
+      <% end %>
+
     <div class="item-explain-box">
       <span><%= "商品説明" %></span>
     </div>
@@ -43,27 +60,27 @@
       <tbody>
         <tr>
           <th class="detail-item">出品者</th>
-          <td class="detail-value"><%= "出品者名" %></td>
+          <td class="detail-value"><%= @item.user_id %></td>
         </tr>
         <tr>
           <th class="detail-item">カテゴリー</th>
-          <td class="detail-value"><%= "カテゴリー名" %></td>
+          <td class="detail-value"><%= Category.find(@item.category_id).name %></td>
         </tr>
         <tr>
           <th class="detail-item">商品の状態</th>
-          <td class="detail-value"><%= "商品の状態" %></td>
+          <td class="detail-value"><%= Condition.find(@item.condition_id).name %></td>
         </tr>
         <tr>
           <th class="detail-item">配送料の負担</th>
-          <td class="detail-value"><%= "発送料の負担" %></td>
+          <td class="detail-value"><%= Charge.find(@item.charge_id).name %></td>
         </tr>
         <tr>
           <th class="detail-item">発送元の地域</th>
-          <td class="detail-value"><%= "発送元の地域" %></td>
+          <td class="detail-value"><%= Region.find(@item.region_id).name %></td>
         </tr>
         <tr>
           <th class="detail-item">発送日の目安</th>
-          <td class="detail-value"><%= "発送日の目安" %></td>
+          <td class="detail-value"><%= Estimate.find(@item.estimate_id).name %></td>
         </tr>
       </tbody>
     </table>
