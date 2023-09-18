@@ -4,19 +4,26 @@
 <div class="item-show">
   <div class="item-box">
     <h2 class="name">
-      <%= "商品名" %>
+      <%= @item.name %>
     </h2>
 
       <%= link_to item_path(@item.id) do %>
               <% if @item.image.attached? %>
                 <%= image_tag @item.image, class: "item-img" %>
               <% end %>
+          <div class="item-img-content">
       <% end %>
 
+    <div class="item-price-box">
+      <span class="item-price">
+      <%= "¥ #{@item.price}" %>
+      </span>
+      <span class="item-postage">
+        <%= Charge.find(@item.charge_id).name %>
+      </span>
+    </div>
 
-    <div class="item-img-content">
-
-      <%# 商品がない場合に示すサンプル画像 %>
+  <%# 商品がない場合に示すサンプル画像、内容 %>
       <%#= image_tag "item-sample.png" ,class:"item-box-img" %>
 
       <%# 商品が売れている場合は、sold outを表示しましょう %>
@@ -25,6 +32,7 @@
       </div>
       <%# //商品が売れている場合は、sold outを表示しましょう %>
     </div>
+
     <div class="item-price-box">
       <span class="item-price">
         ¥ 999,999,999
@@ -33,6 +41,9 @@
         <%= "配送料負担" %>
       </span>
     </div>
+  <%# 商品がない場合に示すサンプル画像、内容 %>
+
+
 
     <%# ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
 
