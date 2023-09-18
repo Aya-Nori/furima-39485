@@ -1,11 +1,13 @@
 <%= render "shared/header" %>
 
-<%# 商品の概要 %>
-<div class="item-show">
-  <div class="item-box">
-    <h2 class="name">
-      <%= @item.name %>
-    </h2>
+<%# if '◆◆◆商品は販売中である。◆◆◆' %>
+
+  <%# 商品の概要 %>
+  <div class="item-show">
+    <div class="item-box">
+      <h2 class="name">
+        <%= @item.name %>
+      </h2>
 
       <%= link_to item_path(@item.id) do %>
               <% if @item.image.attached? %>
@@ -14,25 +16,32 @@
           <div class="item-img-content">
       <% end %>
 
-    <div class="item-price-box">
-      <span class="item-price">
-      <%= "¥ #{@item.price}" %>
-      </span>
-      <span class="item-postage">
-        <%= Charge.find(@item.charge_id).name %>
-      </span>
+      <div class="item-price-box">
+        <span class="item-price">
+        <%= "¥ #{@item.price}" %>
+        </span>
+        <span class="item-postage">
+          <%= Charge.find(@item.charge_id).name %>
+        </span>
+      </div>
     </div>
+  </div>
 
-  <%# 商品がない場合に示すサンプル画像、内容 %>
-      <%#= image_tag "item-sample.png" ,class:"item-box-img" %>
+<%# else '◆◆◆商品は売り切れである◆◆◆'%>
+  <%# ▽▽▽ 商品がない場合に示すサンプル画像、内容 ▽▽▽ %>
 
+  <div class="item-box">
+    <h2 class="name">
+      <%= "商品名" %>
+    </h2>
+    <div class="item-img-content">
+      <%= image_tag "item-sample.png" ,class:"item-box-img" %>
       <%# 商品が売れている場合は、sold outを表示しましょう %>
       <div class="sold-out">
         <span>Sold Out!!</span>
       </div>
       <%# //商品が売れている場合は、sold outを表示しましょう %>
     </div>
-
     <div class="item-price-box">
       <span class="item-price">
         ¥ 999,999,999
@@ -41,9 +50,22 @@
         <%= "配送料負担" %>
       </span>
     </div>
-  <%# 商品がない場合に示すサンプル画像、内容 %>
+  </div>
+
+  <%# △△△ 商品がない場合に示すサンプル画像、内容 △△△ %>
+<%# end '◆◆◆商品が売り切れかどうかが判断された。◆◆◆'%>
 
 
+
+<%# if 'ログインしている' %>
+  <%# if '出品している' %>
+    <%# 商品編集削除ボタン %>
+  <%# else ''%>
+    <%# 商品購入ボタン %>
+  <%# end ''%>
+<%# else ''%>
+    <%# ボタンを表示しない %>
+<%# end ''%>
 
     <%# ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
 
@@ -59,7 +81,7 @@
     <%# //ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
 
     <div class="item-explain-box">
-      <span><%= "商品説明" %></span>
+      <span><%= @item.description %></span>
     </div>
     <table class="detail-table">
       <tbody>
