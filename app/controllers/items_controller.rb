@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :item_find, only: [:edit, :update, :show]
 
   def index
     @items = Item.all.order(created_at: :desc)
@@ -10,14 +11,11 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @item = Item.find(params[:id])
     return if current_user == @item.user
-
     redirect_to root_path
   end
 
   def update
-    @item = Item.find(params[:id])
     if @item.update(item_params)
       redirect_to item_path(@item), notice: '修正されました。'
     else
@@ -29,7 +27,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
   end
 
   def create
@@ -47,4 +44,9 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :image, :description, :price, :category_id, :condition_id, :charge_id, :region_id,
                                  :estimate_id).merge(user_id: current_user.id)
   end
+
+  def item_find
+    @item = Item.find(params[:id])
+  end
+
 end
