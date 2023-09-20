@@ -12,6 +12,7 @@ class ItemsController < ApplicationController
 
   def edit
     return if current_user == @item.user
+
     redirect_to root_path
   end
 
@@ -24,9 +25,9 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if @item.destroy
-      redirect_to root_path, notice: '削除されました。'
-    end
+    return unless @item.destroy
+
+    redirect_to root_path, notice: '削除されました。'
   end
 
   def show
@@ -51,5 +52,4 @@ class ItemsController < ApplicationController
   def item_find
     @item = Item.find(params[:id])
   end
-
 end
