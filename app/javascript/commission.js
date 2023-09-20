@@ -1,4 +1,4 @@
-function commission (){
+function commission(){
   const articleText = document.getElementById("item-price");
 
   articleText.addEventListener("keyup", () => {
