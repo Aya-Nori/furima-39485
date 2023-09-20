@@ -25,10 +25,13 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    return unless current_user == @item.user
-    return unless @item.destroy
+    if current_user == @item.user
+      return unless @item.destroy
 
-    redirect_to root_path, notice: '削除されました。'
+      redirect_to root_path, notice: '削除されました。'
+    else
+      redirect_to root_path
+    end
   end
 
   def show
