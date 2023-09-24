@@ -13,12 +13,12 @@ class ShipmentsController < ApplicationController
   end
 
   def create
-    @item = Item.find(params[:item_id])
-    @shipment = Shipment.new(shipment_params)
-    if @shipment.save
-      redirect_to root_path
-    else
-    end
+    # @item = Item.find(params[:item_id])
+    # @shipment = Shipment.new(shipment_params)
+    # if @shipment.save
+    #   redirect_to root_path
+    # else
+    # end
   end
 
   private
