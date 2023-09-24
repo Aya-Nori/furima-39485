@@ -4,7 +4,7 @@ class CreateShipments < ActiveRecord::Migration[7.0]
       t.references   :purchase,     null: false, foreign_key: true
       t.string       :postcode,    null: false
       t.integer      :region_id,   null: false
-      t.string       :cith,        null: false
+      t.string       :city,        null: false
       t.string       :area_number, null: false
       t.string       :building,    null: false
       t.string       :tell,        null: false
