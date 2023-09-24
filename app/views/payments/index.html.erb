@@ -1,7 +1,7 @@
-<% if user_signed_in? %>
-  <%= current_user.name %>
-  <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete } %>
-<% else %>
-  <%= link_to '新規登録', new_user_registration_path %>
-  <%= link_to 'ログイン', new_user_session_path %>
+<%= form_with  model: @payment, id: 'charge-form', class: 'card-form',local: true do |f| %>
+  <div class='form-wrap'>
+    <%= f.label :price, "金額" %>
+    <%= f.text_field :price, class:"price", placeholder:"例)2000" %>
+  </div>
+  <%= f.submit "購入", class:"button", id: "button" %>
 <% end %>

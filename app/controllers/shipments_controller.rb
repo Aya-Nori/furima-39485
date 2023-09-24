@@ -5,20 +5,21 @@ class ShipmentsController < ApplicationController
     @item = Item.find(params[:item_id])
     if current_user == @item.user
       redirect_to root_path
-    else
     end
   end
 
   def new
+    @shipment = Shipment.new
   end
 
   def create
-    # @item = Item.find(params[:item_id])
-    # @shipment = Shipment.new(shipment_params)
-    # if @shipment.save
-    #   redirect_to root_path
-    # else
-    # end
+    binding.pry
+    @item = Item.find(params[:item_id])
+    @shipment = Shipment.new(shipment_params)
+    @shipment.item = @item
+    if @shipment.save
+      redirect_to root_path
+    end
   end
 
   private
@@ -26,5 +27,4 @@ class ShipmentsController < ApplicationController
   def shipment_params
     params.require(:shipment).permit(:postcode, :region_id, :city, :area_number, :building, :tell)
   end
-
 end
