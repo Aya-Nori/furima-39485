@@ -30,7 +30,7 @@ class ShipmentsController < ApplicationController
   end
 
   def shipment_params
-    params.require(:shipment).permit(:purchase_id, :postcode, :region_id, :city, :area_number, :building, :tell).merge(purchase_id: params[:purchase_id], payment_id: params[:payment_id])
+    params.require(:shipment).permit(:purchase_id, :postcode, :region_id, :city, :area_number, :building, :tell).merge(payment_id: payment.id)
   end
-
+  
 end
