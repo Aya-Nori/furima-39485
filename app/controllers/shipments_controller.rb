@@ -17,6 +17,7 @@ class ShipmentsController < ApplicationController
     binding.pry
     @shipment = Shipment.new(shipment_params)
     @shipment.item = @item
+    Payment.create(payment_params)
     if @shipment.save
       redirect_to root_path
     end
@@ -24,8 +25,12 @@ class ShipmentsController < ApplicationController
 
   private
 
+  def payment_params
+    params.permit(:price).merge(user_id: current_user.id)
+  end
+
   def shipment_params
-    params.require(:shipment).permit(:purchase_id, :postcode, :region_id, :city, :area_number, :building, :tell).merge(payment_id: @payment.id)
+    params.require(:shipment).permit(:purchase_id, :postcode, :region_id, :city, :area_number, :building, :tell).merge(purchase_id: params[:purchase_id], payment_id: params[:payment_id])
   end
 
 end

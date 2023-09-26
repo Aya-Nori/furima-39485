@@ -6,6 +6,7 @@ class PaymentsController < ApplicationController
   end
 
   def new
+    @payment = Payment.new
   end
   
   def create
