@@ -29,11 +29,13 @@
       </h1>
       <p class='item-payment-price'>
         ¥<%= @item.price %>
+
       </p>
     </div>
     <%# /支払額の表示 %>
 
     <%= form_with model: @shipment, id: 'charge-form', class: 'transaction-form-wrap', local: true do |f| %>
+      <% f.text_field :price, value: @item.price %>
 
     <%# カード情報の入力 %>
     <div class='credit-card-form'>
