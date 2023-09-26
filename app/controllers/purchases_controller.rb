@@ -6,6 +6,7 @@ class PurchasesController < ApplicationController
   end
 
   def create
+    @purchase = Purchase.create
   end
 
 end
