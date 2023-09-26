@@ -14,7 +14,6 @@ class ShipmentsController < ApplicationController
 
   def create
     @item = Item.find(params[:item_id])
-    binding.pry
     @shipment = Shipment.new(shipment_params)
     @shipment.item = @item
     if @shipment.save
@@ -25,7 +24,7 @@ class ShipmentsController < ApplicationController
   private
 
   def shipment_params
-    params.require(:shipment).permit(:postcode, :region_id, :city, :area_number, :building, :tell)
+    params.require(:shipment).permit(:purchase_id, :postcode, :region_id, :city, :area_number, :building, :tell)
   end
 
 end

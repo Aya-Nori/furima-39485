@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_24_013825) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_25_090258) do
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -56,8 +56,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_24_013825) do
 
   create_table "payments", charset: "utf8", force: :cascade do |t|
     t.integer "price", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["price"], name: "index_payments_on_price"
+    t.index ["user_id"], name: "index_payments_on_user_id"
   end
 
   create_table "purchases", charset: "utf8", force: :cascade do |t|
@@ -71,6 +74,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_24_013825) do
 
   create_table "shipments", charset: "utf8", force: :cascade do |t|
     t.bigint "purchase_id", null: false
+    t.bigint "payment_id", null: false
     t.string "postcode", null: false
     t.integer "region_id", null: false
     t.string "city", null: false
@@ -79,6 +83,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_24_013825) do
     t.string "tell", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["payment_id"], name: "index_shipments_on_payment_id"
     t.index ["purchase_id"], name: "index_shipments_on_purchase_id"
   end
 
@@ -103,7 +108,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_24_013825) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "items", "users"
+  add_foreign_key "payments", "users"
   add_foreign_key "purchases", "items"
   add_foreign_key "purchases", "users"
+  add_foreign_key "shipments", "payments"
   add_foreign_key "shipments", "purchases"
 end

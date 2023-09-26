@@ -4,6 +4,9 @@ class PaymentsController < ApplicationController
   def index
     @payment = Payment.new
   end
+
+  def new
+  end
   
   def create
     @payment = Payment.new(payment_params)
