@@ -34,7 +34,7 @@
     </div>
     <%# /支払額の表示 %>
 
-    <%= form_with model: @paymentt, id: 'charge-form', class: 'transaction-form-wrap', local: true do |f| %>
+    <%= form_with model: @purchase_shipment, url:purchase_path  id: 'charge-form', class: 'transaction-form-wrap', local: true do |f| %>
     
       <% f.text_field :price, value: @item.price %>
 
