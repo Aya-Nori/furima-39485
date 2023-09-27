@@ -1,6 +1,6 @@
 class PurchaseShipment
   include ActiveModel::Model
-  attr_accessor :price, :user_id, :postcode, :region_id, :city, :area_number, :building, :tell, :user_id
+  attr_accessor :price, :user_id, :postcode, :region_id, :city, :area_number, :building, :tell
 
   with_options presence: true do
     validates :price, numericality: {only_integer: true, greater_than_or_equal_to: 330, less_than_or_equal_to: 10000000, message: "is invalid"}
