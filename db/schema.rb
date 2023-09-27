@@ -74,16 +74,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_25_090258) do
 
   create_table "shipments", charset: "utf8", force: :cascade do |t|
     t.bigint "purchase_id", null: false
-    t.bigint "payment_id", null: false
     t.string "postcode", null: false
     t.integer "region_id", null: false
     t.string "city", null: false
     t.string "area_number", null: false
-    t.string "building", null: false
+    t.string "building"
     t.string "tell", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["payment_id"], name: "index_shipments_on_payment_id"
     t.index ["purchase_id"], name: "index_shipments_on_purchase_id"
   end
 
@@ -111,6 +109,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_25_090258) do
   add_foreign_key "payments", "users"
   add_foreign_key "purchases", "items"
   add_foreign_key "purchases", "users"
-  add_foreign_key "shipments", "payments"
   add_foreign_key "shipments", "purchases"
 end

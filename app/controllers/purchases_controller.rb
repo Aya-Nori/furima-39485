@@ -3,27 +3,24 @@ class PurchasesController < ApplicationController
 
   def index
     @item = Item.find(params[:item_id])
-  end
-
-  def new
     @purchase_shipment = PurchaseShipment.new
   end
 
   def create
-    binding.pry
+    @item = Item.find(params[:item_id])
     @purchase_shipment = PurchaseShipment.new(purchase_params)
     if @purchase_shipment.valid?
       @purchase_shipment.save
       redirect_to root_path
     else
-      render :new, status: :unprocessable_entity
+      render :index, status: :unprocessable_entity
     end
   end
 
   private
 
   def purchase_params
-    params.require(:purchase_shipment).permit(:postcode, :region_id, :city, :area_number, :building, :tell, :price).merge(user_id: current_user.id)
+    params.require(:purchase_shipment).permit(:postcode, :region_id, :city, :area_number, :building, :tell, :price).merge(user_id: current_user.id, item_id: params[:item_id])
   end
 
 end
