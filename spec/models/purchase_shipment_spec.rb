@@ -70,6 +70,9 @@ RSpec.describe PurchaseShipment, type: :model do
         expect(@purchase_shipment.errors.full_messages).to include("Tell is invalid. 10-11桁の半角数で入力してください")
       end
       it 'userが紐付いていないと保存できないこと' do
+        @purchase_shipment.user_id = ''
+        @purchase_shipment.valid?
+        expect(@purchase_shipment.errors.full_messages).to include("User can't be blank")
       end
     end
   end
