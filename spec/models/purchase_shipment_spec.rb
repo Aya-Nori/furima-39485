@@ -10,6 +10,7 @@ RSpec.describe PurchaseShipment, type: :model do
 
     context '購入者の記入内容に問題ない場合' do
       it 'すべての値が正しく入力されていれば保存できること' do
+        expect(@purchase_shipment).to be_valid
       end
       it '建物名は空でも保存できること' do
       end
@@ -38,5 +39,5 @@ RSpec.describe PurchaseShipment, type: :model do
       end
     end
   end
-  
+
 end
