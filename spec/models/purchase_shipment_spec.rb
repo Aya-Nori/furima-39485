@@ -23,9 +23,11 @@ RSpec.describe PurchaseShipment, type: :model do
         @purchase_shipment.postcode = ''
         @purchase_shipment.valid?
         expect(@purchase_shipment.errors.full_messages).to include("Postcode can't be blank")
-
       end
       it '郵便番号が半角のハイフンを含んだ正しい形式でないと保存できないこと' do
+        @purchase_shipment.postcode = '1231234'
+        @purchase_shipment.valid?
+        expect(@purchase_shipment.errors.full_messages).to include("Postcode is invalid. Include hyphen(-)")
       end
       it '都道府県を選択していないと保存できないこと' do
       end
