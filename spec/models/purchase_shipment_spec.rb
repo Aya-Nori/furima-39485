@@ -40,6 +40,9 @@ RSpec.describe PurchaseShipment, type: :model do
         expect(@purchase_shipment.errors.full_messages).to include("City can't be blank", "City is invalid. 全角文字を使用してください")
       end
       it '番地が空だと保存できないこと' do
+        @purchase_shipment.area_number = ''
+        @purchase_shipment.valid?
+        expect(@purchase_shipment.errors.full_messages).to include("Area number can't be blank")
       end
       it '電話番号が9桁以下では保存できないこと' do
       end
