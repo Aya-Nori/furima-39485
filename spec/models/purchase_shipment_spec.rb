@@ -30,6 +30,9 @@ RSpec.describe PurchaseShipment, type: :model do
         expect(@purchase_shipment.errors.full_messages).to include("Postcode is invalid. Include hyphen(-)")
       end
       it '都道府県を選択していないと保存できないこと' do
+        @purchase_shipment.region_id = '1'
+        @purchase_shipment.valid?
+        expect(@purchase_shipment.errors.full_messages).to include("Region can't be blank")
       end
       it '市区町村が空だと保存できないこと' do
       end
