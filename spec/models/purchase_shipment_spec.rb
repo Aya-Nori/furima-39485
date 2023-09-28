@@ -35,6 +35,9 @@ RSpec.describe PurchaseShipment, type: :model do
         expect(@purchase_shipment.errors.full_messages).to include("Region can't be blank")
       end
       it '市区町村が空だと保存できないこと' do
+        @purchase_shipment.city = ''
+        @purchase_shipment.valid?
+        expect(@purchase_shipment.errors.full_messages).to include("City can't be blank", "City is invalid. 全角文字を使用してください")
       end
       it '番地が空だと保存できないこと' do
       end
