@@ -13,6 +13,8 @@ RSpec.describe PurchaseShipment, type: :model do
         expect(@purchase_shipment).to be_valid
       end
       it '建物名は空でも保存できること' do
+        @purchase_shipment.building = ''
+        expect(@purchase_shipment).to be_valid
       end
     end
 
