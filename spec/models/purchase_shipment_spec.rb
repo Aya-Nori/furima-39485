@@ -20,6 +20,10 @@ RSpec.describe PurchaseShipment, type: :model do
 
     context '購入者の記入内容に問題がある場合' do
       it '郵便番号が空だと保存できないこと' do
+        @purchase_shipment.postcode = ''
+        @purchase_shipment.valid?
+        expect(@purchase_shipment.errors.full_messages).to include("Postcode can't be blank")
+
       end
       it '郵便番号が半角のハイフンを含んだ正しい形式でないと保存できないこと' do
       end
