@@ -60,6 +60,9 @@ RSpec.describe PurchaseShipment, type: :model do
         expect(@purchase_shipment.errors.full_messages).to include("Tell is invalid. 10-11桁の半角数で入力してください")
       end
       it '電話番号が全角数字では保存できないこと' do
+        @purchase_shipment.tell = '０９０１２３４１２３４'
+        @purchase_shipment.valid?
+        expect(@purchase_shipment.errors.full_messages).to include("Tell is invalid. 10-11桁の半角数で入力してください")
       end
       it '電話番号に半角ハイフンがあると保存できないこと' do
       end
