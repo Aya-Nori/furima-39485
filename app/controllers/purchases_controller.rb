@@ -1,5 +1,6 @@
 class PurchasesController < ApplicationController
-  before_action :authenticate_user!, except: :index
+  before_action :authenticate_user!
+  before_action :move_to_top
 
   def index
     @item = Item.find(params[:item_id])
@@ -38,6 +39,11 @@ class PurchasesController < ApplicationController
       card: purchase_params[:token], 
       currency: 'jpy'
     )
+  end
+
+  
+  def move_to_top
+    redirect_to root_path
   end
 
 end
