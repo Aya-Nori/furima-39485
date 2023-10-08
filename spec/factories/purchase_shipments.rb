@@ -8,7 +8,7 @@ FactoryBot.define do
     area_number { '1-1' }
     building { '東京ハイツ' }
     tell { '09012341234' }
-    item_id {'2'}
+    item_id { '2' }
 
     token { 'tok_abcdefghijk00000000000000000' }
   end
