@@ -33,7 +33,6 @@
 
     <%= include_gon %>
     <%= form_with model: @purchase_shipment, data: { turbo: false }, url: item_purchases_path, id: 'charge-form', class: 'transaction-form-wrap', local: true do |f| %>
-
       <%= render "shared/error_messages" , model: f.object %>
     <%# カード情報の入力 %>
     <div class='credit-card-form'>
