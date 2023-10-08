@@ -2,9 +2,14 @@ class PurchasesController < ApplicationController
   before_action :authenticate_user!, except: :index
 
   def index
+    @item = Item.find(params[:item_id])
+    if @item.purchase
+      redirect_to root_path
+    else
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @item = Item.find(params[:item_id])
     @purchase_shipment = PurchaseShipment.new
+    end
   end
 
   def create
