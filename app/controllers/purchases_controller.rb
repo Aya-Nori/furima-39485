@@ -40,10 +40,15 @@ class PurchasesController < ApplicationController
       currency: 'jpy'
     )
   end
-
   
   def move_to_top
-    redirect_to root_path
+    @item = Item.find(params[:item_id])
+    if @item.purchase
+      redirect_to root_path
+    elsif current_user.id == @item.user_id
+      redirect_to root_path
+    else
+    end
   end
 
 end
