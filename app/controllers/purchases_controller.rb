@@ -1,20 +1,18 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!
   before_action :move_to_top
+  before_action :item_find, only[:index, :create, :move_to_top]
 
   def index
-    @item = Item.find(params[:item_id])
     if @item.purchase
       redirect_to root_path
     else
       gon.public_key = ENV['PAYJP_PUBLIC_KEY']
-      @item = Item.find(params[:item_id])
       @purchase_shipment = PurchaseShipment.new
     end
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @purchase_shipment = PurchaseShipment.new(purchase_params)
     if @purchase_shipment.valid?
       pay_item
@@ -44,11 +42,15 @@ class PurchasesController < ApplicationController
   end
 
   def move_to_top
-    @item = Item.find(params[:item_id])
     if @item.purchase
       redirect_to root_path
     elsif current_user.id == @item.user_id
       redirect_to root_path
     end
   end
+
+  def item_find
+    @item = Item.find(params[:item_id])
+  end
+
 end
