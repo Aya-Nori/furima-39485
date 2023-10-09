@@ -46,9 +46,8 @@ class PurchasesController < ApplicationController
   end
 
   def move_to_top
-    if @item.purchase || current_user.id == @item.user_id
-      redirect_to root_path
-    end
-  end
+    return unless @item.purchase || current_user.id == @item.user_id
 
+    redirect_to root_path
+  end
 end
