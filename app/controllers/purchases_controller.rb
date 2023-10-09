@@ -1,7 +1,7 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!
-  before_action :move_to_top
-  before_action :item_find, only[:index, :create, :move_to_top]
+  before_action :item_find, only: [:index, :create, :move_to_top]
+  before_action :move_to_top, only: [:index, :create]
 
   def index
     if @item.purchase
@@ -41,15 +41,14 @@ class PurchasesController < ApplicationController
     )
   end
 
+  def item_find
+    @item = Item.find(params[:item_id])
+  end
+
   def move_to_top
-    if @item.purchase
-      redirect_to root_path
-    elsif current_user.id == @item.user_id
+    if @item.purchase || current_user.id == @item.user_id
       redirect_to root_path
     end
   end
 
-  def item_find
-    @item = Item.find(params[:item_id])
-  end
 end
