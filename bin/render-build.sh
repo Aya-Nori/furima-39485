@@ -5,7 +5,7 @@ set -o errexit
 bundle install
 bundle exec rake assets:precompile
 bundle exec rake assets:clean
-bundle exec rake db:migrate
+# bundle exec rake db:migrate
 # 以下、デプロイ時にデータベースをリセットする際の仕様
 # 8行目をコメントオフして11行目をコメントオンにする
-# DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle exec rake db:migrate:reset
+DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle exec rake db:migrate:reset
