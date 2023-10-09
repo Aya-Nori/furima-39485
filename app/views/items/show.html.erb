@@ -11,7 +11,13 @@
               <% if @item.image.attached? %>
                 <%= image_tag @item.image, class: "item-img" %>
               <% end %>
+              <% if @item.purchase %>
+                <div class='sold-out'>
+                  <span>Sold Out!!</span>
+                </div>
+              <% end %>
         <% end %>
+
 
         <div class="item-price-box">
           <span class="item-price">
@@ -23,16 +29,18 @@
         </div>
       </div>
 
-
-    <% if user_signed_in? %>
-      <% if current_user.id == @item.user_id %>
-        <%= link_to "商品の編集", edit_item_path(@item.id), data: { turbo: false }, method: :get, class: "item-red-btn" %>
-        <p class="or-text">or</p>
-        <%= link_to "削除", "/items/#{@item.id}", data: { turbo_method: :delete }, class:"item-destroy" %>
-      <% else %>
-        <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%>
-      <% end %>
+    <% if @item.purchase %>
     <% else %>
+      <% if user_signed_in? %>
+        <% if current_user.id == @item.user_id %>
+          <%= link_to "商品の編集", edit_item_path(@item.id), data: { turbo: false }, method: :get, class: "item-red-btn" %>
+          <p class="or-text">or</p>
+          <%= link_to "削除", "/items/#{@item.id}", data: { turbo_method: :delete }, class:"item-destroy" %>
+        <% else %>
+        <%= link_to "購入画面に進む", item_purchases_path(@item), data: { turbo: false } , method: :get, class:"item-red-btn"%>
+        <% end %>
+      <% else %>
+      <% end %>
     <% end %>
 
 
