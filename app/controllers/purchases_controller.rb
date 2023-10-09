@@ -1,6 +1,6 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!
-  before_action :item_find, only: [:index, :create, :move_to_top]
+  before_action :item_find, only: [:index, :create]
   before_action :move_to_top, only: [:index, :create]
 
   def index
