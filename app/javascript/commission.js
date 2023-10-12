@@ -10,7 +10,7 @@ function commission(){
 
     const profitVal = document.getElementById("profit");
     
-    const totalValue = parseInt(priceVal) + parseInt(calculatedValue);
+    const totalValue = parseInt(priceVal) - parseInt(calculatedValue);
     profitVal.innerHTML = `${totalValue}`;
   });
 };
