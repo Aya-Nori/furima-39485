@@ -78,9 +78,10 @@ group :development do
   gem 'rubocop', require: false
 end
 
-group :production do
-  gem 'pg'
-end
+# render 用の記述なのでコメントアウト
+# group :production do
+#   gem 'pg'
+# end
 
 gem 'devise'
 gem "pry-rails"
