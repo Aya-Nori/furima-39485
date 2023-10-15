@@ -78,7 +78,6 @@ group :development do
   gem 'rubocop', require: false
 end
 
-# render 用の記述なのでコメントアウト
 group :production do
   gem 'pg'
 end
