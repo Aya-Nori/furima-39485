@@ -79,9 +79,9 @@ group :development do
 end
 
 # render 用の記述なのでコメントアウト
-# group :production do
-#   gem 'pg'
-# end
+group :production do
+  gem 'pg'
+end
 
 gem 'devise'
 gem "pry-rails"
