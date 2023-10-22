@@ -80,5 +80,13 @@ test:
 
 production:
   <<: *default
-  adapter: postgresql
-  url: <%= ENV['DATABASE_URL'] %>
+  # 以下、Render用の設定
+  # adapter: postgresql
+  # url: <%= ENV['DATABASE_URL'] %>
+  # 
+  # 以下、ＥＣ２用の設定
+  adapter: mysql2
+  database: furima-39485_production
+  username: root
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
