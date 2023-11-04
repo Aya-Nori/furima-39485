@@ -12,7 +12,9 @@
   <div class='nav'>
     <ul class='lists-left'>
       <li><%= link_to 'カテゴリー', "#", class: "category-list" %></li>
+          <%= image_tag "favicon.ico", class:"search-icon" %>
       <li><%= link_to 'ブランド', "#", class: "brand-list" %></li>
+          <%= image_tag "/app/assets/images/favicon.ico", class:"search-icon" %>
     </ul>
     <ul class='lists-right'>
       <% if user_signed_in? %>
